@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,12 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Poppins', 'sans-serif'] },
-                    colors: { primary: '#0B5ADB', primaryHover: '#0948B2', navy: { 900: '#0B1120', 800: '#1E293B', 700: '#334155' }, lightBg: '#F8FAFC' }
+                    colors: { 
+                        primary: '#0B5ADB', 
+                        primaryHover: '#0948B2', 
+                        navy: { 900: '#0B1120', 800: '#1E293B', 700: '#334155' }, 
+                        lightBg: '#F8FAFC' 
+                    }
                 }
             }
         }
@@ -32,10 +37,12 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .visibility-hidden { visibility: hidden; }
         .line-wrapper { overflow: hidden; padding-bottom: 0.25em; margin-bottom: -0.25em; }
+        .custom-bullet::before { content: '\f00c'; font-family: 'FontAwesome'; color: #0B5ADB; position: absolute; left: 0; top: 2px; font-size: 14px; }
     </style>
 </head>
 <body class="text-gray-600 bg-white selection:bg-primary selection:text-white">
 
+    <!-- Header -->
     <header class="w-full sticky top-0 z-50">
         <div class="bg-navy-900 text-gray-300 text-xs py-2 px-4 lg:px-8 flex justify-between items-center hidden md:flex font-sans">
             <div class="flex space-x-6"><span>Drive business success worldwide with OMC!</span></div>
@@ -46,154 +53,280 @@
             </div>
         </div>
 
-        <nav class="bg-white/90 backdrop-blur-md border-b border-gray-100 px-4 lg:px-8 py-4 flex justify-between items-center w-full" id="main-nav">
-            <a href="../index.html" class="flex-shrink-0" aria-label="Home"><img src="../assets/logo.png" alt="Online Marketing Champ Logo" class="h-10 md:h-12 object-contain"></a>
-            <div class="hidden lg:flex items-center space-x-8 font-heading text-sm font-medium text-navy-800">
+        <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 px-4 lg:px-8 py-4 flex justify-between items-center w-full relative" id="main-nav">
+            <a href="../index.html" class="flex-shrink-0" aria-label="Home">
+                <img src="../assets/logo.png" alt="Online Marketing Champ Logo" class="h-10 md:h-12 object-contain">
+            </a>
+            
+            <div id="desktop-menu" class="hidden lg:flex items-center space-x-8 font-heading text-sm font-medium text-navy-800">
                 <a href="../index.html" class="nav-link hover:text-primary transition">Home</a>
                 <a href="../about.html" class="nav-link hover:text-primary transition">About Us</a>
                 <a href="../services/index.html" class="nav-link hover:text-primary transition">Services</a>
                 <a href="index.html" class="nav-link active text-primary transition">Case Studies</a>
                 <a href="../services/internships.html" class="nav-link hover:text-primary transition">Internships</a>
             </div>
-            <div class="hidden lg:block"><a href="../contact.html" class="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded-full font-medium text-sm transition flex items-center gap-2">Contact Us</a></div>
-            <button class="lg:hidden text-navy-800 text-2xl" aria-label="Toggle Mobile Menu"><i class="fa-solid fa-bars"></i></button>
+            
+            <div class="hidden lg:block">
+                <a href="../contact.html" class="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded-full font-medium text-sm transition shadow-md shadow-primary/20 flex items-center gap-2">Contact Us</a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="lg:hidden text-navy-800 text-2xl focus:outline-none" aria-label="Toggle Mobile Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-100 absolute w-full shadow-lg">
+            <div class="flex flex-col px-4 pt-2 pb-6 space-y-4 font-heading text-base font-medium text-navy-800">
+                <a href="../index.html" class="hover:text-primary transition">Home</a>
+                <a href="../about.html" class="hover:text-primary transition">About Us</a>
+                <a href="../services/index.html" class="hover:text-primary transition">Services</a>
+                <a href="index.html" class="text-primary transition">Case Studies</a>
+                <a href="../services/internships.html" class="hover:text-primary transition">Internships</a>
+                <a href="../contact.html" class="text-primary font-bold mt-2">Contact Us &rarr;</a>
+            </div>
+        </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero-gradient pt-24 pb-20 px-4 lg:px-8 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiMwQjVBREIiIGZpbGwtb3BhY2l0eT0iMC4yIi8+PC9zdmc+')] pointer-events-none"></div>
             <div class="max-w-[85rem] mx-auto relative z-10 text-center">
-                <div class="inline-block text-xs font-semibold tracking-widest text-primary uppercase mb-4">Case Study</div>
-                <h1 class="gsap-split-text font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-navy-900 mb-6 leading-tight visibility-hidden">
-                    Improved Online Visibility & Generated 45% Growth in Organic Traffic for <span class="text-primary">SNKADX</span>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-white shadow-sm border border-gray-100 text-xs font-bold tracking-widest text-primary uppercase mb-6">Case Study</div>
+                <h1 class="gsap-split-text font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy-900 mb-6 leading-[1.15] visibility-hidden">
+                    Improved Visibility & Generated 45% Organic Growth for <span class="text-primary">SNKADX</span>
                 </h1>
-                <p class="gsap-fade-up text-xl text-gray-600 max-w-3xl mx-auto visibility-hidden">This case study focuses on SNKADEX, a sneaker-match clothing brand that struggled with limited online visibility and poor keyword performance. The momentum shifted when Online Marketing Champ stepped in.</p>
+                <p class="gsap-fade-up text-lg md:text-xl text-gray-600 max-w-3xl mx-auto visibility-hidden leading-relaxed">
+                    This case study focuses on SNKADX, a sneaker-match clothing brand that struggled with limited online visibility and poor keyword performance. The momentum shifted when Online Marketing Champ stepped in.
+                </p>
             </div>
         </section>
 
+        <!-- Main Content & Sidebar -->
         <section class="py-24 px-4 lg:px-8 bg-white">
-            <div class="max-w-[85rem] mx-auto grid md:grid-cols-3 gap-12 lg:gap-16">
-                <div class="md:col-span-1 space-y-8 bg-lightBg p-8 rounded-3xl border border-gray-100 h-fit sticky top-28">
-                    <div>
-                        <h2 class="font-heading font-bold text-navy-900 text-lg mb-2">Industry:</h2>
-                        <p class="text-gray-600">Fashion & Apparel</p>
-                    </div>
-                    <div>
-                        <h2 class="font-heading font-bold text-navy-900 text-lg mb-2">Services:</h2>
-                        <p class="text-gray-600">E-Commerce SEO, On-Page SEO</p>
+            <div class="max-w-[85rem] mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
+                
+                <!-- Sticky Sidebar -->
+                <div class="lg:col-span-4 relative">
+                    <div class="sticky top-32 space-y-8 bg-lightBg p-8 rounded-3xl border border-gray-100 shadow-sm">
+                        <!-- Industry Box -->
+                        <div>
+                            <h2 class="font-heading font-bold text-navy-900 text-sm uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-shirt text-primary"></i> Industry
+                            </h2>
+                            <p class="text-gray-700 font-medium bg-white px-4 py-2 rounded-xl border border-gray-100 inline-block">Fashion & Apparel</p>
+                        </div>
+                        
+                        <hr class="border-gray-200">
+                        
+                        <!-- Services Box -->
+                        <div>
+                            <h2 class="font-heading font-bold text-navy-900 text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-laptop-code text-primary"></i> Services Delivered
+                            </h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-sm font-medium text-gray-600 bg-white border border-gray-200 px-3 py-1.5 rounded-full">E-Commerce SEO</span>
+                                <span class="text-sm font-medium text-gray-600 bg-white border border-gray-200 px-3 py-1.5 rounded-full">On-Page SEO</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-2 space-y-16 text-lg text-gray-600 leading-relaxed">
+                <!-- Main Reading Area -->
+                <div class="lg:col-span-8 space-y-16 text-lg text-gray-600 leading-loose">
+                    
                     <div class="gsap-fade-up visibility-hidden">
-                        <h2 class="font-heading text-3xl font-bold text-navy-900 mb-6">About SNKADX</h2>
-                        <p class="mb-4">SNKADX is a growing sneaker match clothing brand offering curated apparel designed to perfectly complement popular sneaker releases. Their collections include clothes to match sneakers, sweatshirts, hoodies, Jordan match outfits, Nike match outfits, and Yeezy match outfits for both men and women.</p>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy-900 mb-6">About SNKADX</h2>
+                        <p class="mb-5">SNKADX is a growing sneaker match clothing brand offering curated apparel designed to perfectly complement popular sneaker releases. Their collections include clothes to match sneakers, sweatshirts, hoodies, Jordan match outfits, Nike match outfits, and Yeezy match outfits for both men and women.</p>
                         <p>The platform allows sneaker enthusiasts to discover coordinated styles that elevate their footwear with effortless, street-ready fashion. Users can browse collections freely or refine their search using intuitive filters such as featured sneakerheads clothing, bestselling items, price points, and release dates.</p>
                     </div>
 
                     <div class="gsap-fade-up visibility-hidden">
-                        <h2 class="font-heading text-3xl font-bold text-navy-900 mb-6">The Challenge</h2>
-                        <p class="mb-4">Despite a strong product lineup and a smooth, user-friendly shopping experience, the brand struggled to establish authority and trust within highly competitive search results.</p>
-                        <p class="mb-4">The primary challenge was weak organic visibility for high-intent sneaker match keywords. Core search terms related to sneaker match clothing, Jordan match outfits, and Nike match apparel were not ranking effectively, limiting discoverability.</p>
-                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                            <li>Lack of strong on-page SEO signals across product and collection pages.</li>
-                            <li>Poor keyword targeting for sneaker match and brand-driven search terms.</li>
-                            <li>Limited search engine trust and domain authority.</li>
-                            <li>Low organic visibility for high-intent, conversion-focused keywords.</li>
-                        </ul>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy-900 mb-6">The Challenge</h2>
+                        <p class="mb-5">Despite a strong product lineup and a smooth, user-friendly shopping experience, the brand struggled to establish authority and trust within highly competitive search results.</p>
+                        <p class="mb-6">The primary challenge was weak organic visibility for high-intent sneaker match keywords. Core search terms related to sneaker match clothing, Jordan match outfits, and Nike match apparel were not ranking effectively, limiting discoverability.</p>
+                        
+                        <div class="bg-red-50/50 border border-red-100 rounded-2xl p-6 md:p-8">
+                            <ul class="space-y-4 text-gray-700">
+                                <li class="relative pl-7 custom-bullet">Lack of strong on-page SEO signals across product and collection pages.</li>
+                                <li class="relative pl-7 custom-bullet">Poor keyword targeting for sneaker match and brand-driven search terms.</li>
+                                <li class="relative pl-7 custom-bullet">Limited search engine trust and domain authority.</li>
+                                <li class="relative pl-7 custom-bullet">Low organic visibility for high-intent, conversion-focused keywords.</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="gsap-fade-up visibility-hidden">
-                        <h2 class="font-heading text-3xl font-bold text-navy-900 mb-6">How Did We Achieve the Results?</h2>
-                        <p class="mb-6">To improve visibility, rankings, and search engine trust for SNKADX, we implemented a structured on-page SEO strategy focused on relevance, usability, and long-term scalability.</p>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-navy-900 mb-8">How Did We Achieve the Results?</h2>
+                        <p class="mb-8 text-xl text-navy-800 font-medium">To improve visibility, rankings, and search engine trust for SNKADX, we implemented a structured on-page SEO strategy focused on relevance, usability, and long-term scalability.</p>
                         
-                        <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Comprehensive On-Page SEO Optimization</h3>
-                        <p class="mb-6">We optimized core product, collection, and category pages by improving content structure, headings, keyword placement, and page relevance, resulting in better indexation and increased organic traffic.</p>
-                        
-                        <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Metadata, CTR & Internal Linking Enhancements</h3>
-                        <p class="mb-6">We rewrote titles and meta descriptions to better match search intent and improve click-through rates. Strategic internal linking connected related collections and products, strengthening page authority and reducing bounce rates.</p>
-                        
-                        <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Search Trust & Performance Foundation</h3>
-                        <p>By aligning on-page signals with user intent and search engine expectations, we strengthened SNKADX’s credibility and trust signals, leading to healthier site performance metrics and better visibility in US search results.</p>
+                        <div class="space-y-10">
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold text-xl">1</div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-navy-900 mb-3">Comprehensive On-Page SEO Optimization</h3>
+                                    <p>We optimized core product, collection, and category pages by improving content structure, headings, keyword placement, and page relevance, resulting in better indexation and increased organic traffic.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold text-xl">2</div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-navy-900 mb-3">Metadata, CTR & Internal Linking Enhancements</h3>
+                                    <p>We rewrote titles and meta descriptions to better match search intent and improve click-through rates. Strategic internal linking connected related collections and products, strengthening page authority and reducing bounce rates.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold text-xl">3</div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-navy-900 mb-3">Search Trust & Performance Foundation</h3>
+                                    <p>By aligning on-page signals with user intent and search engine expectations, we strengthened SNKADX’s credibility and trust signals, leading to healthier site performance metrics and better visibility in US search results.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Grid -->
-        <section class="py-24 px-4 lg:px-8 bg-navy-900 text-white text-center">
-            <div class="max-w-[85rem] mx-auto grid grid-cols-2 md:grid-cols-3 gap-8 gap-y-12 gsap-stagger-container">
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">45%</div><p class="text-sm text-gray-300">Increase in Organic Traffic After Updates</p>
+        <!-- Stats Grid (UI Enhanced) -->
+        <section class="py-24 px-4 lg:px-8 bg-navy-900 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <div class="max-w-[85rem] mx-auto relative z-10">
+                <div class="text-center mb-16 gsap-fade-up visibility-hidden">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">The Impact</h2>
+                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Measurable results delivered through strategic execution.</p>
                 </div>
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">68%</div><p class="text-sm text-gray-300">Growth in Keyword Rankings</p>
-                </div>
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">52%</div><p class="text-sm text-gray-300">Higher Indexation Rate for Optimized Pages</p>
-                </div>
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">38%</div><p class="text-sm text-gray-300">Improvement in Content Relevance Scores</p>
-                </div>
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">31%</div><p class="text-sm text-gray-300">Increase in Click-Through Rates</p>
-                </div>
-                <div class="gsap-stagger-item visibility-hidden">
-                    <div class="text-4xl font-bold text-primary mb-2">27%</div><p class="text-sm text-gray-300">Reduction in Bounce Rate on Key Pages</p>
+
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 gsap-stagger-container">
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">45%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Increase in Organic Traffic After Updates</p>
+                    </div>
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">68%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Growth in Keyword Rankings</p>
+                    </div>
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">52%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Higher Indexation Rate for Optimized Pages</p>
+                    </div>
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">38%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Improvement in Content Relevance Scores</p>
+                    </div>
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">31%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Increase in Click-Through Rates</p>
+                    </div>
+                    <div class="gsap-stagger-item visibility-hidden bg-white/5 border border-white/10 p-8 rounded-3xl text-center hover:bg-white/10 transition duration-300">
+                        <div class="text-4xl md:text-5xl font-extrabold text-primary mb-3">27%</div>
+                        <p class="text-sm md:text-base text-gray-300 font-medium">Reduction in Bounce Rate on Key Pages</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-4 lg:px-8 bg-lightBg text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="font-heading text-3xl font-bold text-navy-900 mb-6">Where Strategy Meets Scalable Growth</h2>
-                <p class="text-gray-600 mb-4 text-lg">We work as an extension of your team, bringing strategic insight, hands-on expertise, and long-term commitment to help your brand achieve measurable growth.</p>
-                <ul class="text-gray-700 font-medium mb-8 inline-block text-left space-y-2">
-                    <li><i class="fa-solid fa-check text-primary mr-2"></i> Your success is at the core of everything we do.</li>
-                    <li><i class="fa-solid fa-check text-primary mr-2"></i> Clear, performance-driven SEO and marketing ROI.</li>
-                    <li><i class="fa-solid fa-check text-primary mr-2"></i> Strategies designed to compete, convert, and lead.</li>
-                </ul>
-                <br>
-                <a href="../contact.html" class="bg-primary hover:bg-primaryHover text-white font-bold py-4 px-8 rounded-full transition inline-flex items-center gap-2 shadow-lg hover:-translate-y-1 hover:shadow-blue-500/30">Contact us today <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- Fixed CTA / Features Section -->
+        <section class="py-24 px-4 lg:px-8 bg-lightBg relative">
+            <div class="max-w-5xl mx-auto p-10 sm:p-16 bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden text-center">
+                
+                <div class="absolute -top-32 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col items-center gap-10">
+                    
+                    <div class="space-y-4 max-w-2xl mx-auto">
+                        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary bg-blue-50 border border-blue-100 rounded-full">
+                            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                            Strategic Growth
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-navy-900 leading-tight">
+                            Where Strategy Meets Scalable Growth
+                        </h2>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            We work as an extension of your team, bringing strategic insight, hands-on expertise, and long-term commitment to help your brand achieve measurable growth.
+                        </p>
+                    </div>
+
+                    <!-- 3-Column Feature Layout -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full pt-8 border-t border-gray-100">
+                        <div class="flex flex-col items-center text-center gap-4">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-blue-50 text-primary shadow-sm border border-blue-100/50">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-navy-900">Client Success First</h3>
+                            <p class="text-sm text-gray-500">Your success is at the core of everything we do.</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-4">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-blue-50 text-primary shadow-sm border border-blue-100/50">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-navy-900">Measurable ROI</h3>
+                            <p class="text-sm text-gray-500">Clear, performance-driven SEO and marketing results.</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-4">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-blue-50 text-primary shadow-sm border border-blue-100/50">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-navy-900">Strategic Dominance</h3>
+                            <p class="text-sm text-gray-500">Strategies designed to compete, convert, and lead.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <a href="../contact.html" class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary hover:bg-primaryHover text-white font-heading font-semibold text-lg rounded-full transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1">
+                            <span>Contact us today</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-navy-900 text-gray-300 py-16 px-4 lg:px-8 border-t border-gray-800 relative z-20">
         <div class="max-w-[85rem] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div class="lg:col-span-1">
-                <img src="../assets/logo.png" alt="Online Marketing Champ Logo" class="h-10 mb-6">
+                <img src="../assets/logo.png" alt="Online Marketing Champ Logo" class="h-10 mb-6 bg-white/10 p-1 rounded">
                 <p class="text-sm text-gray-400 leading-relaxed mb-6">We work systematically to integrate corporate responsibility in our core business. Headquartered in Palampur, Himachal Pradesh.</p>
                 <div class="flex space-x-4">
-                    <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition hover:-translate-y-1 text-white"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
             </div>
             <div>
                 <h4 class="text-white font-heading font-bold mb-6 uppercase text-sm tracking-wider">Important Links</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="../index.html" class="hover:text-primary transition">Home</a></li>
-                    <li><a href="../about.html" class="hover:text-primary transition">About Us</a></li>
-                    <li><a href="../services/index.html" class="hover:text-primary transition">Services</a></li>
-                    <li><a href="index.html" class="hover:text-primary transition">Case Studies</a></li>
-                    <li><a href="../faq.html" class="hover:text-primary transition">FAQs</a></li>
-                    <li><a href="../contact.html" class="hover:text-primary transition">Contact Us</a></li>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="../index.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Home</a></li>
+                    <li><a href="../about.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">About Us</a></li>
+                    <li><a href="../services/index.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Services</a></li>
+                    <li><a href="index.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Case Studies</a></li>
+                    <li><a href="../faq.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">FAQs</a></li>
+                    <li><a href="../contact.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Contact Us</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-heading font-bold mb-6 uppercase text-sm tracking-wider">Services</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="../services/search-engine-optimization.html" class="hover:text-primary transition">Search Engine Optimization</a></li>
-                    <li><a href="../services/pay-per-click.html" class="hover:text-primary transition">Pay Per Click (PPC)</a></li>
-                    <li><a href="../services/content-writing.html" class="hover:text-primary transition">Content Writing</a></li>
-                    <li><a href="../services/website-development.html" class="hover:text-primary transition">Website Development</a></li>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="../services/search-engine-optimization.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Search Engine Optimization</a></li>
+                    <li><a href="../services/pay-per-click.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Pay Per Click (PPC)</a></li>
+                    <li><a href="../services/content-writing.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Content Writing</a></li>
+                    <li><a href="../services/website-development.html" class="hover:text-primary hover:translate-x-1 inline-block transition-transform">Website Development</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-heading font-bold mb-6 uppercase text-sm tracking-wider">Get in Touch</h4>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-start gap-3"><i class="fa-solid fa-envelope mt-1 text-primary"></i> <a href="mailto:contact@onlinemarketingchamp.com" class="hover:text-white transition">contact@onlinemarketingchamp.com</a></li>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-envelope mt-1 text-primary"></i> <a href="mailto:contact@onlinemarketingchamp.com" class="hover:text-white transition break-all">contact@onlinemarketingchamp.com</a></li>
                     <li class="flex items-start gap-3"><i class="fa-solid fa-phone mt-1 text-primary"></i> <a href="tel:+919805697004" class="hover:text-white transition">+91-9805697004</a></li>
                 </ul>
             </div>
@@ -201,19 +334,32 @@
         <div class="max-w-[85rem] mx-auto pt-8 border-t border-gray-800 text-center text-sm text-gray-500">© 2025 Online Marketing Champ. All rights reserved.</div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
+    
     <script>
+        // Mobile Menu Toggle Fix
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling setup
         const lenis = new Lenis({ smooth: true });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
         
+        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => { lenis.raf(time * 1000) });
         
+        // Text Splitting (Fix applied: Simplified heading structure)
         const splitTexts = new SplitType('.gsap-split-text', { types: 'lines, words' });
         splitTexts.lines.forEach(line => { 
             const wrapper = document.createElement('div'); 
@@ -222,16 +368,31 @@
             wrapper.appendChild(line); 
         });
 
+        // Show elements just before animation
         gsap.set('.visibility-hidden', { autoAlpha: 1 });
         
+        // Text Animation
         gsap.utils.toArray('.gsap-split-text').forEach((text) => { 
-            gsap.fromTo(text.querySelectorAll('.word'), { y: 50, opacity: 0 }, { scrollTrigger: { trigger: text, start: "top 90%" }, y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: "power3.out" }); 
+            gsap.fromTo(text.querySelectorAll('.word'), 
+                { y: 50, opacity: 0 }, 
+                { scrollTrigger: { trigger: text, start: "top 90%" }, y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: "power3.out" }
+            ); 
         });
+        
+        // Fade Up Animation
         gsap.utils.toArray('.gsap-fade-up').forEach(el => { 
-            gsap.fromTo(el, { y: 30, opacity: 0 }, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }); 
+            gsap.fromTo(el, 
+                { y: 30, opacity: 0 }, 
+                { scrollTrigger: { trigger: el, start: "top 85%" }, y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
+            ); 
         });
+        
+        // Staggered Stats Animation
         gsap.utils.toArray('.gsap-stagger-container').forEach(container => { 
-            gsap.fromTo(container.querySelectorAll('.gsap-stagger-item'), { y: 30, opacity: 0 }, { scrollTrigger: { trigger: container, start: "top 90%" }, y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out" }); 
+            gsap.fromTo(container.querySelectorAll('.gsap-stagger-item'), 
+                { y: 30, opacity: 0 }, 
+                { scrollTrigger: { trigger: container, start: "top 85%" }, y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out" }
+            ); 
         });
     </script>
 </body>
