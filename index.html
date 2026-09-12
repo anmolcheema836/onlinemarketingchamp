@@ -905,16 +905,13 @@
             smoothTouch: false,
         });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // 2. Integrate GSAP with Lenis
+        // 2. Integrate GSAP with Lenis (Removed duplicate RAF loop to prevent stuttering/hanging)
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => { lenis.raf(time * 1000) });
+        
+        gsap.ticker.add((time) => { 
+            lenis.raf(time * 1000); 
+        });
         gsap.ticker.lagSmoothing(0);
 
         // 3. Typography Split (SplitType)
